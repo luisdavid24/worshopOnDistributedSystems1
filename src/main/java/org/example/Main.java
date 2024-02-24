@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
@@ -21,12 +22,16 @@ public class Main {
             System.out.println("4.Salir    ");
             try {
                 choice=Integer.parseInt(br.readLine());
+                remoteInterface calcinterface= (remoteInterface)Naming.lookup("Implement");
+                Remote lookup = Naming.lookup("Implement");
                 Implement impl= new Implement();
                 Sudoke= impl.creatSudoku(choice);
                 Sudoke= impl.fillMatrix(choice,Sudoke);
                 impl.showMatrix(Sudoke);
 
             } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (NotBoundException e) {
                 throw new RuntimeException(e);
             }
 
