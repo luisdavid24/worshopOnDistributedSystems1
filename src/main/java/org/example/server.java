@@ -12,7 +12,7 @@ public class server{
     {
         Registry reg=LocateRegistry.createRegistry(1099);
         Implement impl=new Implement();
-        reg.rebind("Calc", impl);
+        reg.rebind("Implement", impl);
         System.out.println("servidor iniciado");
 
     }

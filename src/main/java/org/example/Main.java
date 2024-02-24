@@ -11,17 +11,21 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        float n1, n2, res; int choice = 0;
+        int choice = 0;
+        int[][] Sudoke=null;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         do {
-            System.out.println("1.Matriz 4x4 ");
-            System.out.println("2.Matriz 9x9     ");
-            System.out.println("3.Matriz 16x16    ");
+            System.out.println("1.Matriz    4x4 ");
+            System.out.println("2.Matriz    9x9  ");
+            System.out.println("3.Matriz  16x16 ");
             System.out.println("4.Salir    ");
             try {
                 choice=Integer.parseInt(br.readLine());
                 Implement impl= new Implement();
-                
+                Sudoke= impl.creatSudoku(choice);
+                Sudoke= impl.fillMatrix(choice,Sudoke);
+                impl.showMatrix(Sudoke);
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
