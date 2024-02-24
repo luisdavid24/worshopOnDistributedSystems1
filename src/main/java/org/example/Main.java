@@ -22,12 +22,16 @@ public class Main {
             System.out.println("4.Salir    ");
             try {
                 choice=Integer.parseInt(br.readLine());
-                remoteInterface calcinterface= (remoteInterface)Naming.lookup("Implement");
-                Remote lookup = Naming.lookup("Implement");
-                Implement impl= new Implement();
-                Sudoke= impl.creatSudoku(choice);
-                Sudoke= impl.fillMatrix(choice,Sudoke);
-                impl.showMatrix(Sudoke);
+
+                if(choice!=4){
+                    remoteInterface calcinterface= (remoteInterface)Naming.lookup("Implement");
+                    Remote lookup = Naming.lookup("Implement");
+                    Implement impl= new Implement();
+                    Sudoke= impl.creatSudoku(choice);
+                    Sudoke= impl.fillMatrix(choice,Sudoke);
+                    impl.showMatrix(Sudoke);
+                }
+
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
