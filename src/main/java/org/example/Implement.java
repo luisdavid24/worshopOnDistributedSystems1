@@ -41,6 +41,17 @@ public class Implement extends UnicastRemoteObject implements remoteInterface{
     @Override
     public void showMatrix(int[][] sudoku) throws RemoteException {
         
-        System.out.println("Estamos usando showMatrix");
+        for (int i = 0; i < sudoku.length; i++) {
+
+                System.out.print(" [ ");
+            for (int j = 0; j < sudoku.length; j++) {
+
+                System.out.print(" " + sudoku[i][j] + " ");
+            }
+            System.out.print(" ] ");
+            
+           System.out.println(" ");
+        }
+
     }
 }
