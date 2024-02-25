@@ -45,7 +45,7 @@ public class Main {
                             break;
 
                         default:
-                            System.out.println("Mire bien pai.");
+                            System.out.println("Selecciona una opcion correcta.");
                             break;
                     }
 
