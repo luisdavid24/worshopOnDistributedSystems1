@@ -16,6 +16,8 @@ public class Main {
         int[][] Sudoke = null;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         do {
+            System.out.println(" ");
+            System.out.println("Por favor, sea tan amable de elegir alguna de las opciones ofrecidas:");
             System.out.println("1.Matriz    4x4 ");
             System.out.println("2.Matriz    9x9  ");
             System.out.println("3.Matriz  16x16 ");
@@ -59,6 +61,6 @@ public class Main {
             }
 
         } while (choice != 4);
-
+        System.out.println("Gracias por su tiempo, pero el programa a terminado.");
     }
 }

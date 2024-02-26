@@ -40,18 +40,34 @@ public class Implement extends UnicastRemoteObject implements remoteInterface{
 
     @Override
     public void showMatrix(int[][] sudoku) throws RemoteException {
-        
-        for (int i = 0; i < sudoku.length; i++) {
+        int size = sudoku.length;
 
-                System.out.print(" [ ");
-            for (int j = 0; j < sudoku.length; j++) {
+        System.out.println("Te presentamos la matriz de " + size + "x" + size);
 
-                System.out.print(" " + sudoku[i][j] + " ");
+        for (int i = 0; i < size; i++) {
+            if (i > 0 && i % Math.sqrt(size) == 0) {
+                printHorizontalLine(size);
             }
-            System.out.print(" ] ");
-            
-           System.out.println(" ");
+
+            System.out.print("|");
+            for (int j = 0; j < size; j++) {
+                if (j > 0 && j % Math.sqrt(size) == 0) {
+                    System.out.print(" |");
+                }
+                System.out.print(" " + sudoku[i][j]);
+            }
+            System.out.println(" |");
         }
 
+        System.out.println();
     }
+
+    private void printHorizontalLine(int size) {
+        int lineLength = (int)Math.sqrt(size) +size;
+        for (int i = 0; i < lineLength; i++) {
+            System.out.print(" -");
+        }
+        System.out.println();
+    }
+    
 }
