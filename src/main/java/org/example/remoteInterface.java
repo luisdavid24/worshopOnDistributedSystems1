@@ -8,4 +8,8 @@ public interface remoteInterface extends Remote {
     int[][] creatSudoku(int tamaño) throws RemoteException;
     int[][] fillMatrix(int tamaño, int[][] sudoku) throws RemoteException;
     void showMatrix(int[][] sudoku) throws RemoteException;
+
+    int[][] playSudoku(int[][] sudoku) throws RemoteException;
+
+    String isSudokuFilledCorrectly(int[][] sudoku)throws RemoteException ;
 }

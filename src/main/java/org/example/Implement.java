@@ -74,7 +74,7 @@ public class Implement extends UnicastRemoteObject implements remoteInterface{
         System.out.println();
     }
 
-    public int[][] playSudoku(int[][] sudoku) throws RemoteException {
+    public int[][] playSudoku(int[][] sudoku) {
         Random random = new Random();
         int numeroAleatorio ;
         for (int i = 0;i<sudoku.length ; i++) {
