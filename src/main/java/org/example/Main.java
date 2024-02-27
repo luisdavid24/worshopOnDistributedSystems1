@@ -11,9 +11,10 @@ import java.rmi.RemoteException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         int choice = 0;
         int[][] Sudoke = null;
+        Implement impl = new Implement();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         do {
             System.out.println(" ");
@@ -21,14 +22,15 @@ public class Main {
             System.out.println("1.Matriz    4x4 ");
             System.out.println("2.Matriz    9x9  ");
             System.out.println("3.Matriz  16x16 ");
-            System.out.println("4.Salir    ");
+            System.out.println("4.Llenar la matriz  ");
+            System.out.println("5.Salir    ");
             try {
                 choice = Integer.parseInt(br.readLine());
 
-                if (choice != 4) {
+                if (choice != 5) {
                     remoteInterface calcinterface = (remoteInterface) Naming.lookup("Implement");
                     Remote lookup = Naming.lookup("Implement");
-                    Implement impl = new Implement();
+
 
                     switch (choice) {
                         case 1:
@@ -45,7 +47,9 @@ public class Main {
                             Sudoke = impl.creatSudoku(16);
                             Sudoke = impl.fillMatrix(16, Sudoke);
                             break;
-
+                        case 4:
+                            Sudoke=impl.playSudoku(Sudoke);
+                            break;
                         default:
                             System.out.println("Selecciona una opcion correcta.");
                             break;
@@ -60,7 +64,7 @@ public class Main {
                 throw new RuntimeException(e);
             }
 
-        } while (choice != 4);
+        } while (choice != 5);
         System.out.println("Gracias por su tiempo, pero el programa a terminado.");
     }
 }

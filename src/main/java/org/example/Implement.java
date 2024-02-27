@@ -26,7 +26,7 @@ public class Implement extends UnicastRemoteObject implements remoteInterface{
         Random random = new Random();
         int i=0,j=0,numeroAleatorio ;
         while(counter<column*rows){
-            numeroAleatorio = random.nextInt(10);
+            numeroAleatorio = random.nextInt(column+1);
             j=random.nextInt(n);
             i=random.nextInt(n);
             sudoku[i][j]=numeroAleatorio;
@@ -54,7 +54,11 @@ public class Implement extends UnicastRemoteObject implements remoteInterface{
                 if (j > 0 && j % Math.sqrt(size) == 0) {
                     System.out.print(" |");
                 }
-                System.out.print(" " + sudoku[i][j]);
+                if(sudoku[i][j]>=10){
+                    System.out.print(" "+sudoku[i][j]);
+                }else{
+                    System.out.print("  " + sudoku[i][j]);
+                }
             }
             System.out.println(" |");
         }
@@ -63,11 +67,27 @@ public class Implement extends UnicastRemoteObject implements remoteInterface{
     }
 
     private void printHorizontalLine(int size) {
-        int lineLength = (int)Math.sqrt(size) +size;
+        int lineLength = (int)Math.sqrt(size) +size+(size/2);
         for (int i = 0; i < lineLength; i++) {
             System.out.print(" -");
         }
         System.out.println();
     }
-    
+
+    public int[][] playSudoku(int[][] sudoku) throws RemoteException {
+        Random random = new Random();
+        int numeroAleatorio ;
+        for (int i = 0;i<sudoku.length ; i++) {
+            for (int j = 0; j <sudoku.length ; j++) {
+                    if(sudoku[i][j]==0){
+                        sudoku[i][j]=random.nextInt(sudoku.length)+1;
+                    }
+            }
+        }
+
+        return sudoku;
+    }
+
+
+
 }
