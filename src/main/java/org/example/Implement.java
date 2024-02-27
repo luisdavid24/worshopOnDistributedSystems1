@@ -87,6 +87,63 @@ public class Implement extends UnicastRemoteObject implements remoteInterface{
 
         return sudoku;
     }
+    public String isSudokuFilledCorrectly(int[][] sudoku) {
+        for (int i = 0; i < sudoku.length; i++) {
+            if (!isValid(sudoku[i])) {
+                return "No sirve";
+            }
+        }
+
+        for (int j = 0; j < sudoku[0].length; j++) {
+            int[] column = new int[sudoku.length];
+            for (int i = 0; i < sudoku.length; i++) {
+                column[i] = sudoku[i][j];
+            }
+            if (!isValid(column)) {
+                return "No sirve";
+            }
+        }
+
+        int regionSize = (int) Math.sqrt(sudoku.length);
+        for (int row = 0; row < sudoku.length; row += regionSize) {
+            for (int col = 0; col < sudoku.length; col += regionSize) {
+                if (!isValidRegion(sudoku, row, col, regionSize)) {
+                    return "No sirve";
+                }
+            }
+        }
+
+        return "Si sirve";
+    }
+
+    private boolean isValid(int[] array) {
+        boolean[] seen = new boolean[array.length];
+        for (int value : array) {
+            if (value != 0) {
+                if (seen[value - 1]) {
+                    return false; // Número repetido
+                }
+                seen[value - 1] = true;
+            }
+        }
+        return true;
+    }
+
+    private boolean isValidRegion(int[][] sudoku, int startRow, int startCol, int regionSize) {
+        boolean[] seen = new boolean[sudoku.length];
+        for (int row = startRow; row < startRow + regionSize; row++) {
+            for (int col = startCol; col < startCol + regionSize; col++) {
+                int value = sudoku[row][col];
+                if (value != 0) {
+                    if (seen[value - 1]) {
+                        return false; // Número repetido en la región
+                    }
+                    seen[value - 1] = true;
+                }
+            }
+        }
+        return true;
+    }
 
 
 

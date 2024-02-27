@@ -23,11 +23,12 @@ public class Main {
             System.out.println("2.Matriz    9x9  ");
             System.out.println("3.Matriz  16x16 ");
             System.out.println("4.Llenar la matriz  ");
-            System.out.println("5.Salir    ");
+            System.out.println("5.Verificar    ");
+            System.out.println("6.Salir    ");
             try {
                 choice = Integer.parseInt(br.readLine());
 
-                if (choice != 5) {
+                if (choice != 6) {
                     remoteInterface calcinterface = (remoteInterface) Naming.lookup("Implement");
                     Remote lookup = Naming.lookup("Implement");
 
@@ -50,12 +51,16 @@ public class Main {
                         case 4:
                             Sudoke=impl.playSudoku(Sudoke);
                             break;
+                        case 5:
+                            System.out.println(impl.isSudokuFilledCorrectly(Sudoke));
+
                         default:
                             System.out.println("Selecciona una opcion correcta.");
                             break;
                     }
-
+                    System.out.println(" ");
                     impl.showMatrix(Sudoke);
+
                 }
 
             } catch (IOException e) {
@@ -64,7 +69,7 @@ public class Main {
                 throw new RuntimeException(e);
             }
 
-        } while (choice != 5);
+        } while (choice != 6);
         System.out.println("Gracias por su tiempo, pero el programa a terminado.");
     }
 }
